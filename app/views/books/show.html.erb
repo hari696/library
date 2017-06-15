@@ -1,0 +1,48 @@
+<div class="container">
+	<h1>Showing Current Record!<%= @book[:id].inspect %></h1>
+	<p>
+	  <strong>Title:</strong>
+	  <%= @book.title %>
+	</p>
+	 
+	<p>
+	  <strong>Text:</strong>
+	  <%= @book.text %>
+	</p>
+
+
+	<h1>Comments</h1>
+	<% @comments.each do |comment| %>
+	<p>
+		<strong>Commenter</strong>
+		<%= comment.commenter %>
+	</p>
+
+	<p>
+		<strong>Comments</strong>
+		<%= comment.body %>
+	</p>
+	<% end %>
+	<h2>Add Comment</h2>
+
+	<%= form_for([@book, @book.comments.build]) do |f| %>
+	<p>
+		<%= f.label :commenter %></br>
+		<%= f.text_field :commenter %>
+	</p>
+
+	<p>
+		<%= f.label :body %></br>
+		<%= f.text_area :body %>
+	</p>
+	<p>
+		<%= f.submit %>
+	</p>
+
+	<% end %>
+
+	<%= link_to 'Home', root_path, {:class => 'links'} %>
+
+<%= link_to 'Sign Out', destroy_user_session_path, :method => :delete, :class=>'btn btn-primary btn-lg link_singout' %>
+
+</div>
